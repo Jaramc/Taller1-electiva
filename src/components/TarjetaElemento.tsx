@@ -3,9 +3,10 @@ import type { Personaje } from '../types/api';
 
 interface Props {
   personaje: Personaje;
+  alSeleccionar: (personaje: Personaje) => void;
 }
 
-export function TarjetaElemento({ personaje }: Props) {
+export function TarjetaElemento({ personaje, alSeleccionar }: Props) {
   return (
     <article className={styles.card}>
       <img
@@ -27,7 +28,10 @@ export function TarjetaElemento({ personaje }: Props) {
           Especie: {personaje.species}
         </p>
 
-        <button className={styles.botonDetalle}>
+        <button
+          className={styles.botonDetalle}
+          onClick={() => alSeleccionar(personaje)}
+        >
           Inspeccionar Ficha
         </button>
       </div>
