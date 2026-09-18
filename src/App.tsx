@@ -1,17 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
-import type { Personaje } from './types/api';
-import { getCharacters } from './services/api';
-import { TarjetaElemento } from './components/TarjetaElemento';
-import { BarraBusqueda } from './components/BarraBusqueda'; // <- Importamos la nueva barra
-import styles from './styles/Catalogo.module.css';
+import type { Personaje } from "./types/api";
+import { getCharacters } from "./services/api";
+import { TarjetaElemento } from "./components/TarjetaElemento";
+import { BarraBusqueda } from "./components/BarraBusqueda";
+import styles from "./styles/Catalogo.module.css";
 
 export default function App() {
   const [personajes, setPersonajes] = useState<Personaje[]>([]);
-  
-  const [textoBusqueda, setTextoBusqueda] = useState(""); // Lo que el usuario va escribiendo letra por letra
-  const [terminoFinal, setTerminoFinal] = useState(""); // Lo que queda después de esperar 400ms
 
+  const [textoBusqueda, setTextoBusqueda] = useState("");
+  const [terminoFinal, setTerminoFinal] = useState("");
+
+  const [cargando, setCargando] = useState(false);
+  const [error, setError] = useState("");
+
+  // Espera 400 ms después de que el usuario deja de escribir
   useEffect(() => {
     const temporizador = setTimeout(() => {
       setTerminoFinal(textoBusqueda);
@@ -20,80 +24,48 @@ export default function App() {
     return () => clearTimeout(temporizador);
   }, [textoBusqueda]);
 
+  // Consulta los personajes
   useEffect(() => {
     async function cargarDatos() {
       try {
+        setCargando(true);
+        setError("");
+
+        
         const datos = await getCharacters(terminoFinal);
-        setPersonajes(datos.results);
-      } catch (error) {
-        console.error("Hubo un problema cargando los datos", error);
-      }
-    }
-
-    cargarDatos();
-  }, [terminoFinal]); 
-
-
-import { Personaje } from './types/api';
-import { getCharacters } from './services/api';
-import { TarjetaElemento } from './components/TarjetaElemento';
-
-import styles from './styles/Catalogo.module.css';
-
-export default function App() {
-
-  const [personajes, setPersonajes] = useState<Personaje[]>([]);
-
-  useEffect(() => {
-
-    async function cargarDatos() {
-      try {
-        const datos = await getCharacters();
 
         setPersonajes(datos.results);
       } catch (error) {
         console.error("Hubo un problema cargando los datos", error);
+
+        setError("No fue posible cargar los personajes");
+        setPersonajes([]);
+      } finally {
+        setCargando(false);
       }
     }
 
-
     cargarDatos();
-  }, []); 
-
+  }, [terminoFinal]);
 
   return (
     <main className={styles.contenedor}>
       <h1 className={styles.titulo}>Catálogo Rick & Morty</h1>
-      
 
-      { }
-      <BarraBusqueda 
-        valor={textoBusqueda} 
-        alCambiar={setTextoBusqueda} 
-      />
-      
+      <BarraBusqueda valor={textoBusqueda} alCambiar={setTextoBusqueda} />
+
       <div className={styles.grid}>
-        {}
-        {personajes.length > 0 ? (
+        {cargando ? (
+          <p>Cargando personajes...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : personajes.length > 0 ? (
           personajes.map((personaje) => (
-            <TarjetaElemento 
-              key={personaje.id} 
-              personaje={personaje} 
-            />
+            <TarjetaElemento key={personaje.id} personaje={personaje} />
           ))
         ) : (
-          <p style={{ color: '#8e8e93', fontSize: '1.1rem' }}>No se encontraron especímenes.</p>
+          <p>No se encontraron especímenes.</p>
         )}
-
-      {}
-      <div className={styles.grid}>
-        {}
-        {personajes.map((personaje) => (
-          <TarjetaElemento 
-            key={personaje.id} 
-            personaje={personaje} 
-          />
-        ))}
       </div>
     </main>
   );
