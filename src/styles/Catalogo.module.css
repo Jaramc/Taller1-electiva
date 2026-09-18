@@ -1,0 +1,35 @@
+/* -- NUEVAS CLASES PARA EL BUSCADOR -- */
+.contenedorBusqueda {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2.5rem;
+}
+
+.iconoBusqueda {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8e8e93;
+    /* Gris clásico de los iconos de Apple */
+}
+
+/* -- CLASE ACTUALIZADA -- */
+.inputBusqueda {
+    width: 100%;
+    /* Modificamos el padding: arriba, derecha, abajo, IZQUIERDA */
+    /* Le damos 3rem a la izquierda para que el texto no pise el ícono de la lupa */
+    padding: 1rem 1.5rem 1rem 3rem;
+    font-size: 1.1rem;
+    background-color: #e5e5ea;
+    border: none;
+    border-radius: 16px;
+    color: #1c1c1e;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.inputBusqueda:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(172, 157, 242, 0.3);
+}
