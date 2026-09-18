@@ -4,6 +4,7 @@ export interface Personaje {
     status: string;
     species: string;
     image: string;
+
 }
 
 export interface InfoPagina {
