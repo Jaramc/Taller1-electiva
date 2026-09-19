@@ -300,6 +300,40 @@
   border-radius: 14px;
 
   font-size: 18px;
+  font-weight: 600;
+}
+
+.alertaError {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  background-color: #fce8e6;
+  border-radius: 16px;
+  color: #c92a2a;
+  margin-top: 2rem;
+}
+
+.botonReintento {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #AC9DF2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.botonReintento:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
   font-weight: 700;
 
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
