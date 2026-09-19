@@ -123,7 +123,7 @@ export default function App() {
         ) : (
           <p>No se encontraron especímenes.</p>
         )}
-
+      </div>
       <div className={styles.encabezado}>
         <h1 className={styles.logo}>RICK & MORTY</h1>
 
