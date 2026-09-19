@@ -48,3 +48,15 @@ Por esta razón, el uso de Inteligencia Artificial no se limitó únicamente a l
 La utilización de Inteligencia Artificial facilitó el desarrollo del proyecto al permitir resolver dudas técnicas, comprender conceptos y encontrar soluciones a diferentes problemas.
 
 Cada recomendación generada por la IA fue revisada y validada mediante pruebas en la aplicación antes de ser integrada al proyecto.
+
+# Declaración de Uso de IA
+
+| Fecha | Integrante | Herramienta | Consulta | Uso de la respuesta |
+| :--- | :--- | :--- | :--- | :--- |
+| 2026-09-16 | Ximena Jaramillo | Gemini | Extraer y organizar los requerimientos técnicos y funcionales del PDF de evaluación del taller. | Identificar los criterios de aceptación para planear los issues y la estructura del proyecto en GitHub. |
+| 2026-09-17 | Ximena Jaramillo | Gemini | Consultar ideas de diseño visual y estructura (mockups) para la presentación de los personajes. | Tomar inspiración de la estructura sugerida para escribir manualmente las clases en `Catalogo.module.css`. |
+| 2026-09-18 | Ximena Jaramillo | Gemini | Explicación de un error de tipado (Type error) de TypeScript al momento de mapear la respuesta de la API. | Entender el origen del conflicto de tipos para poder corregir manualmente la interfaz en `types/api.ts`. |
+| 2026-09-19 | Ximena Jaramillo | Gemini | Guía conceptual para diagnosticar por qué una imagen de cursor personalizado no se reflejaba usando CSS Modules. | Entender el encapsulamiento de React y la regla `:global` para aplicar el cursor por mi cuenta, sin copiar código directo. |
+| 2026-09-19 | Ximena Jaramillo | Gemini | Revisar estructura y sugerencia de redacción técnica para el documento final de presentación. | Utilizar la base redactada para construir el archivo `README.md` adaptado a las rutas y detalles de nuestro repositorio. |
+
+*Nota: Todas las consultas de código realizadas a la IA se limitaron a la comprensión de errores y conceptos arquitectónicos. El código final fue escrito, adaptado y estructurado manualmente por los integrantes del equipo.*

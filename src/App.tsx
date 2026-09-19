@@ -80,13 +80,17 @@ export default function App() {
 
   return (
     <main className={styles.contenedor}>
-      <h1 className={styles.titulo}>Catálogo Rick & Morty</h1>
-
-      <p className={styles.contadorFavoritos}>
-        ★ Favoritos: {favoritos.length}
-      </p>
       
-      <BarraBusqueda valor={textoBusqueda} alCambiar={setTextoBusqueda} />
+      {/* Encabezado moderno con buscador y botón verde integrado */}
+      <div className={styles.encabezado}>
+        <h1 className={styles.logo}>RICK & MORTY</h1>
+
+        <div className={styles.buscadorEncabezado}>
+          <BarraBusqueda valor={textoBusqueda} alCambiar={setTextoBusqueda} />
+        </div>
+
+        <div className={styles.favoritosEncabezado}>★ {favoritos.length}</div>
+      </div>
       
       <div className={styles.grid}>
         {cargando ? (

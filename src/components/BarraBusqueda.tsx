@@ -29,7 +29,6 @@ export function BarraBusqueda({ valor, alCambiar }: Props) {
 
       <input 
         type="text" 
-        // Ya le quitamos el emoji de aquí
         placeholder="Buscar espécimen..." 
         className={styles.inputBusqueda}
         value={valor}

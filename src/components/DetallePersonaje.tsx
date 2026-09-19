@@ -8,7 +8,6 @@ interface Props {
 
 export function DetallePersonaje({ personaje, alVolver }: Props) {
   return (
-    /* El div overlay cubre toda la pantalla y cierra el modal si haces clic por fuera */
     <div className={styles.overlay} onClick={alVolver}>
       {/* El stopPropagation evita que al hacer clic dentro de la tarjeta blanca se cierre el modal */}
       <div className={styles.modalFicha} onClick={(e) => e.stopPropagation()}>

@@ -1,75 +1,54 @@
-# React + TypeScript + Vite
+# Catálogo Rick & Morty - Taller React API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada en React y TypeScript que consume la API pública de Rick & Morty. El proyecto implementa una interfaz tipada, tolerante a errores y con manejo de estados, cumpliendo con los requerimientos funcionales y técnicos del taller de Electiva.
 
-Currently, two official plugins are available:
+## 🚀 Instalación y Ejecución
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Sigue estos pasos para levantar el proyecto en tu entorno local desde cero:
 
-## React Compiler
+1. **Clonar el repositorio**
+   \`\`\`bash
+   git clone https://github.com/Jaramc/Taller1-electiva.git
+   cd Taller1-electiva
+   \`\`\`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. **Instalar las dependencias**
+   Asegúrate de tener Node.js instalado. Luego ejecuta:
+   \`\`\`bash
+   npm install
+   \`\`\`
 
-## Expanding the ESLint configuration
+3. **Ejecutar el entorno de desarrollo**
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+   El servidor se iniciará (usualmente en `http://localhost:5173`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+4. **Compilar para producción (Verificación)**
+   Para comprobar que no existen errores de TypeScript ni advertencias antes de entregar:
+   \`\`\`bash
+   npm run build
+   \`\`\`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tecnologías y Reglas Técnicas Aplicadas
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* **Core:** React 18 con TypeScript, inicializado mediante Vite (`react-ts`).
+* **Estilos:** CSS Modules puros (`.module.css`), garantizando un diseño responsivo sin frameworks externos.
+* **Peticiones HTTP:** Uso de `fetch` nativo validando `response.ok`.
+* **Cancelación de Peticiones:** Integración obligatoria de `AbortController` en la función de limpieza del `useEffect` principal.
+* **Tipado:** Interfaces estrictas generadas a mano basadas en las respuestas JSON de la API. No se utiliza `any` ni `@ts-ignore`.
+* **Búsqueda (RF-03):** Retardo de 400ms implementado manualmente con `setTimeout` y `clearTimeout`, sin usar librerías externas de debounce.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📋 Requerimientos Funcionales Implementados
 
-```
+* **RF-01 (Listado):** Renderizado en grilla de más de 20 personajes con información clave (nombre, estado, especie).
+* **RF-02 (Estados):** Manejo visual de estados: *Cargando*, *Error*, *Sin resultados* y *Éxito*.
+* **RF-03 (Búsqueda):** Input controlado con filtrado reactivo y retardo optimizado.
+* **RF-04 (Detalle):** Vista en detalle interactiva (modal) para cada personaje seleccionado.
+* **RF-05 (Favoritos):** Sistema de marcaje con persistencia de datos en `localStorage`.
+* **RF-06 (Reintento):** Botón de recuperación de conexión que reejecuta la petición de forma limpia sin recargar el navegador.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## 👥 Equipo de Desarrollo
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+* **Ximena Jaramillo Cárdenas** - [Describe brevemente tu rol/issue asignado]
+* **Fredy Osorio** - [Describe brevemente su rol/issue asignado]
