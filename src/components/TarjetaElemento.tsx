@@ -22,28 +22,29 @@ export function TarjetaElemento({
         className={styles.imagen}
       />
 
+      <button
+        className={styles.botonFavorito}
+        onClick={() => alAlternarFavorito(personaje.id)}
+        title={esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
+      >
+        {esFavorito ? "★" : "☆"}
+      </button>
+
       <div className={styles.info}>
         <h2 className={styles.nombre}>{personaje.name}</h2>
 
-        <div>
+        <p className={styles.textoSecundario}>{personaje.species}</p>
+
+        <div className={styles.accionesTarjeta}>
           <span className={styles.pildoraEstado}>{personaje.status}</span>
+
+          <button
+            className={styles.botonDetalle}
+            onClick={() => alSeleccionar(personaje)}
+          >
+            Ver ficha
+          </button>
         </div>
-
-        <button
-          className={styles.botonFavorito}
-          onClick={() => alAlternarFavorito(personaje.id)}
-        >
-          {esFavorito ? "★ Favorito" : "☆ Agregar a favoritos"}
-        </button>
-        
-        <p className={styles.textoSecundario}>Especie: {personaje.species}</p>
-
-        <button
-          className={styles.botonDetalle}
-          onClick={() => alSeleccionar(personaje)}
-        >
-          Inspeccionar Ficha
-        </button>
       </div>
     </article>
   );
