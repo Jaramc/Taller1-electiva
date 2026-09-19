@@ -1,12 +1,19 @@
-import styles from '../styles/Catalogo.module.css';
-import type { Personaje } from '../types/api';
+import styles from "../styles/Catalogo.module.css";
+import type { Personaje } from "../types/api";
 
 interface Props {
   personaje: Personaje;
   alSeleccionar: (personaje: Personaje) => void;
+  esFavorito: boolean;
+  alAlternarFavorito: (id: number) => void;
 }
 
-export function TarjetaElemento({ personaje, alSeleccionar }: Props) {
+export function TarjetaElemento({
+  personaje,
+  alSeleccionar,
+  esFavorito,
+  alAlternarFavorito,
+}: Props) {
   return (
     <article className={styles.card}>
       <img
@@ -19,14 +26,17 @@ export function TarjetaElemento({ personaje, alSeleccionar }: Props) {
         <h2 className={styles.nombre}>{personaje.name}</h2>
 
         <div>
-          <span className={styles.pildoraEstado}>
-            {personaje.status}
-          </span>
+          <span className={styles.pildoraEstado}>{personaje.status}</span>
         </div>
 
-        <p className={styles.textoSecundario}>
-          Especie: {personaje.species}
-        </p>
+        <button
+          className={styles.botonFavorito}
+          onClick={() => alAlternarFavorito(personaje.id)}
+        >
+          {esFavorito ? "★ Favorito" : "☆ Agregar a favoritos"}
+        </button>
+        
+        <p className={styles.textoSecundario}>Especie: {personaje.species}</p>
 
         <button
           className={styles.botonDetalle}
