@@ -24,6 +24,8 @@ export default function App() {
 
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
+  
+  const [intentos, setIntentos] = useState(0);
 
   const alternarFavorito = (id: number) => {
     setFavoritos((favoritosActuales) => {
@@ -34,7 +36,8 @@ export default function App() {
       return [...favoritosActuales, id];
     });
   };
-  //Guarda los favoritos en el localStorage
+  
+  // Guarda los favoritos en el localStorage
   useEffect(() => {
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
   }, [favoritos]);
@@ -61,7 +64,7 @@ export default function App() {
       } catch (error) {
         console.error("Hubo un problema cargando los datos", error);
 
-        setError("No fue posible cargar los personajes");
+        setError("Se perdió la conexión con el servidor multidimensional.");
         setPersonajes([]);
       } finally {
         setCargando(false);
@@ -69,7 +72,8 @@ export default function App() {
     }
 
     cargarDatos();
-  }, [terminoFinal]);
+
+  }, [terminoFinal, intentos]);
 
   if (personajeSeleccionado) {
     return (
@@ -81,6 +85,7 @@ export default function App() {
       </main>
     );
   }
+  
   return (
     <main className={styles.contenedor}>
       <h1 className={styles.titulo}>Catálogo Rick & Morty</h1>
@@ -95,7 +100,16 @@ export default function App() {
         {cargando ? (
           <p>Cargando personajes...</p>
         ) : error ? (
-          <p>{error}</p>
+
+            <div className={styles.alertaError}>
+            <p>{error}</p>
+            <button 
+              onClick={() => setIntentos(intentos + 1)} 
+              className={styles.botonReintento}
+            >
+              Reintentar Conexión
+            </button>
+          </div>
         ) : personajes.length > 0 ? (
           personajes.map((personaje) => (
             <TarjetaElemento
