@@ -13,11 +13,31 @@ export default function App() {
   const [personajeSeleccionado, setPersonajeSeleccionado] =
     useState<Personaje | null>(null);
 
+  const [favoritos, setFavoritos] = useState<number[]>(() => {
+    const favoritosGuardados = localStorage.getItem("favoritos");
+
+    return favoritosGuardados ? JSON.parse(favoritosGuardados) : [];
+  });
+
   const [textoBusqueda, setTextoBusqueda] = useState("");
   const [terminoFinal, setTerminoFinal] = useState("");
 
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
+
+  const alternarFavorito = (id: number) => {
+    setFavoritos((favoritosActuales) => {
+      if (favoritosActuales.includes(id)) {
+        return favoritosActuales.filter((favoritoId) => favoritoId !== id);
+      }
+
+      return [...favoritosActuales, id];
+    });
+  };
+  //Guarda los favoritos en el localStorage
+  useEffect(() => {
+    localStorage.setItem("favoritos", JSON.stringify(favoritos));
+  }, [favoritos]);
 
   // Espera 400 ms después de que el usuario deja de escribir
   useEffect(() => {
@@ -65,6 +85,10 @@ export default function App() {
     <main className={styles.contenedor}>
       <h1 className={styles.titulo}>Catálogo Rick & Morty</h1>
 
+      <p className={styles.contadorFavoritos}>
+        ★ Favoritos: {favoritos.length}
+      </p>
+
       <BarraBusqueda valor={textoBusqueda} alCambiar={setTextoBusqueda} />
 
       <div className={styles.grid}>
@@ -78,6 +102,8 @@ export default function App() {
               key={personaje.id}
               personaje={personaje}
               alSeleccionar={setPersonajeSeleccionado}
+              esFavorito={favoritos.includes(personaje.id)}
+              alAlternarFavorito={alternarFavorito}
             />
           ))
         ) : (

@@ -74,3 +74,25 @@
 .botonVolver:hover {
   opacity: 0.85;
 }
+
+.botonFavorito {
+  margin-top: 15px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.botonFavorito:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+.contadorFavoritos {
+  margin: 10px 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
