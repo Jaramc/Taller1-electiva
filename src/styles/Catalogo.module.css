@@ -1,37 +1,38 @@
 /* -- NUEVAS CLASES PARA EL BUSCADOR -- */
 .contenedorBusqueda {
-    position: relative;
-    width: 100%;
-    margin-bottom: 2.5rem;
+  position: relative;
+  width: 100%;
+  margin-bottom: 2.5rem;
 }
 
 .iconoBusqueda {
-    position: absolute;
-    left: 1.2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #8e8e93;
-    /* Gris clásico de los iconos de Apple */
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8e8e93;
+  /* Gris clásico de los iconos de Apple */
 }
 
 /* -- CLASE ACTUALIZADA -- */
 .inputBusqueda {
-    width: 100%;
-    /* Modificamos el padding: arriba, derecha, abajo, IZQUIERDA */
-    /* Le damos 3rem a la izquierda para que el texto no pise el ícono de la lupa */
-    padding: 1rem 1.5rem 1rem 3rem;
-    font-size: 1.1rem;
-    background-color: #e5e5ea;
-    border: none;
-    border-radius: 16px;
-    color: #1c1c1e;
-    outline: none;
-    transition: all 0.2s ease;
+  width: 100%;
+  /* Modificamos el padding: arriba, derecha, abajo, IZQUIERDA */
+  /* Le damos 3rem a la izquierda para que el texto no pise el ícono de la lupa */
+  padding: 1rem 1.5rem 1rem 3rem;
+  font-size: 1.1rem;
+  background-color: #e5e5ea;
+  border: none;
+  border-radius: 16px;
+  color: #1c1c1e;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .inputBusqueda:focus {
-    background-color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(172, 157, 242, 0.3);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(172, 157, 242, 0.3);
 }
 
 .detalle {
@@ -75,24 +76,229 @@
   opacity: 0.85;
 }
 
-.botonFavorito {
-  margin-top: 15px;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
+.contadorFavoritos {
+  margin: 10px 0 20px;
+  font-size: 18px;
   font-weight: 600;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* =========================================
+   REDISEÑO DE LAS TARJETAS
+   ========================================= */
+
+.card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.16);
+}
+
+/* Imagen del personaje */
+
+.imagen {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+/* Botón de favorito - estrella */
+
+.botonFavorito {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #20d875;
+  font-size: 30px;
+  line-height: 1;
+
+  cursor: pointer;
+  z-index: 10;
+
+  transition: transform 0.2s ease;
 }
 
 .botonFavorito:hover {
-  transform: scale(1.03);
-  opacity: 0.9;
+  transform: scale(1.2);
 }
 
-.contadorFavoritos {
-  margin: 10px 0 20px;
+/* Información */
+
+.info {
+  padding: 14px 4px 4px;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nombre {
+  color: #111111;
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1.15;
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 0 5px;
+}
+
+.textoSecundario {
+  color: #777777;
+  font-size: 14px;
+  margin: 0 0 14px;
+}
+
+/* Zona inferior */
+
+.accionesTarjeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+/* Estado */
+
+.pildoraEstado {
+  flex: 1;
+
+  padding: 8px 12px;
+
+  background-color: #20df78;
+  color: #083d21;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+/* Botón ver ficha */
+
+.botonDetalle {
+  padding: 8px 14px;
+
+  border: none;
+  border-radius: 20px;
+
+  background-color: #18c9e8;
+  color: #073642;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.botonDetalle:hover {
+  transform: scale(1.05);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.encabezado {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  margin-bottom: 35px;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.logo {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  white-space: nowrap;
+  color: #111;
+  letter-spacing: -1px;
+}
+
+.buscadorEncabezado {
+  flex: 1;
+  min-width: 0;
+}
+
+.buscadorEncabezado .contenedorBusqueda {
+  margin-bottom: 0;
+}
+
+.favoritosEncabezado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 65px;
+  height: 50px;
+
+  background: #18d879;
+  color: #111;
+
+  border-radius: 14px;
+
   font-size: 18px;
   font-weight: 600;
 }
@@ -126,4 +332,37 @@
 .botonReintento:hover {
   opacity: 0.9;
   transform: scale(1.02);
+}
+
+  font-weight: 700;
+
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+
+  flex-shrink: 0;
+}
+
+.seccionCatalogo {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+.tituloCatalogo {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 15px;
+
+  font-size: 44px;
+  line-height: 0.95;
+  font-weight: 900;
+
+  color: #111;
+  text-align: left;
+  letter-spacing: -2px;
+}
+
+.tituloCatalogo span {
+  display: block;
 }
