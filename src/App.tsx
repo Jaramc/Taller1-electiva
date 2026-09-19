@@ -83,32 +83,42 @@ export default function App() {
   }
   return (
     <main className={styles.contenedor}>
-      <h1 className={styles.titulo}>Catálogo Rick & Morty</h1>
+      <div className={styles.encabezado}>
+        <h1 className={styles.logo}>RICK & MORTY</h1>
 
-      <p className={styles.contadorFavoritos}>
-        ★ Favoritos: {favoritos.length}
-      </p>
+        <div className={styles.buscadorEncabezado}>
+          <BarraBusqueda valor={textoBusqueda} alCambiar={setTextoBusqueda} />
+        </div>
 
-      <BarraBusqueda valor={textoBusqueda} alCambiar={setTextoBusqueda} />
+        <div className={styles.favoritosEncabezado}>★ {favoritos.length}</div>
+      </div>
 
-      <div className={styles.grid}>
-        {cargando ? (
-          <p>Cargando personajes...</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : personajes.length > 0 ? (
-          personajes.map((personaje) => (
-            <TarjetaElemento
-              key={personaje.id}
-              personaje={personaje}
-              alSeleccionar={setPersonajeSeleccionado}
-              esFavorito={favoritos.includes(personaje.id)}
-              alAlternarFavorito={alternarFavorito}
-            />
-          ))
-        ) : (
-          <p>No se encontraron especímenes.</p>
-        )}
+      <div className={styles.seccionCatalogo}>
+        <div className={styles.tituloCatalogo}>
+          <span>RICK AND</span>
+          <span>MORTY</span>
+          <span>CATALOG</span>
+        </div>
+
+        <div className={styles.grid}>
+          {cargando ? (
+            <p>Cargando personajes...</p>
+          ) : error ? (
+            <p>{error}</p>
+          ) : personajes.length > 0 ? (
+            personajes.map((personaje) => (
+              <TarjetaElemento
+                key={personaje.id}
+                personaje={personaje}
+                alSeleccionar={setPersonajeSeleccionado}
+                esFavorito={favoritos.includes(personaje.id)}
+                alAlternarFavorito={alternarFavorito}
+              />
+            ))
+          ) : (
+            <p>No se encontraron especímenes.</p>
+          )}
+        </div>
       </div>
     </main>
   );
